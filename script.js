@@ -8,50 +8,78 @@ function getComputerChoice(){
     else if(choice>=4 && choice<7){
         return b;
     }
-         else return c;
-    
+         else  if(choice>=7 && choice<10) {
+         return c;
+         }
 }
 function playRound(playerSelection,computerSelection){
-     computerSelection =  getComputerChoice();
      let msg="";
-    if (playerSelection.toUpperCase()==="ROCK"){
-        if (computerSelection==="Rock"){
-            msg="Tie";
+     computerSelection=getComputerChoice();
+     playerSelection=prompt("Let's play pre");
+    if (playerSelection.toUpperCase()==="ROCK" && computerSelection==="Rock"){
+            msg="Tie rock vs rock";
         }
-        else if(computerSelection==="Paper"){
-            msg="You lose";
+        else if(playerSelection.toUpperCase()==="ROCK" && computerSelection==="Paper"){
+            msg="You lose paper beats rock";
         }
-        else if(computerSelection==="Scissors"){
-            msg="You win";
+        else if(playerSelection.toUpperCase()==="ROCK" && computerSelection==="Scissors"){
+            msg="You win rock beats scissors";
         }
-    }
-    else if (playerSelection.toUpperCase()==="PAPER"){
-        if (computerSelection==="Paper"){
-            msg="Tie";
+    
+     if (playerSelection.toUpperCase()==="PAPER" && computerSelection==="Paper"){
+            msg="Tie paper vs paper";
         }
-        else if(computerSelection==="Scissors"){
-            msg="You lose";
+        else if(playerSelection.toUpperCase()==="PAPER" && computerSelection==="Scissors"){
+            msg="You lose scissors beats paper";
         }
-        else if(computerSelection==="Rock"){
-            msg="You win";
+        else if(playerSelection.toUpperCase()==="PAPER" && computerSelection==="Rock"){
+            msg="You win paper beats rock";
         }
-    }
-    else if (playerSelection.toUpperCase()==="SCISSORS"){
-        if (computerSelection==="Scissors"){
-            msg="Tie";
+    
+     if (playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="Scissors"){
+            msg="Tie scis vs scis";
         }
-        else if(computerSelection==="Rock"){
-            msg="You lose";
+        else if(playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="Rock"){
+            msg="You lose rock beats scisssors";
         }
-        else if(computerSelection==="Paper"){
-            msg="You win";
+        else if(playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="Paper"){
+            msg="You win scissors beats paper";
         }
-    }
     return msg;
+}
+function game(){
+    let player=0;
+    let computer=0;
+    let result="";
+    for (let i=0;i<5; i++){
+       result=playRound(playerSelection,computerSelection);
+        if(result.includes("win")){
+            player++;
+        }
+        else if(result.includes("lose")){
+            computer++;
+        }
+      console.log(result);
+      console.log(player);
+      console.log(computer);
+     
+    }
+    console.log(player);
+    if(player>computer){
+        return "You win!";
+    }
+    else if(player<computer){
+        return "You lose, dumbo!";
+    }
+    else if(player===computer){
+        return "Tie!";
+    }
 }
     
 
-console.log(getComputerChoice());
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+    
+let playerSelection = 0;
+let computerSelection = getComputerChoice();
+//console.log(computerSelection);
+//console.log(playRound(playerSelection, computerSelection));
+console.log(game());
