@@ -15,7 +15,7 @@ function getComputerChoice(){
 function playRound(playerSelection,computerSelection){
      let msg="";
      computerSelection=getComputerChoice();
-     playerSelection=prompt("Let's play pre");
+     playerSelection=prompt("Let's play!");
     if (playerSelection.toUpperCase()==="ROCK" && computerSelection==="Rock"){
             msg="Tie rock vs rock";
         }
@@ -64,7 +64,6 @@ function game(){
       console.log(computer);
      
     }
-    console.log(player);
     if(player>computer){
         return "You win!";
     }
@@ -80,6 +79,4 @@ function game(){
     
 let playerSelection = 0;
 let computerSelection = getComputerChoice();
-//console.log(computerSelection);
-//console.log(playRound(playerSelection, computerSelection));
 console.log(game());
