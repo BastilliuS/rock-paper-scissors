@@ -16,6 +16,8 @@ function playRound(choice){
      let msg="";
      computerSelection=getComputerChoice();
      playerSelection=choice;
+
+
     if (playerSelection.toUpperCase()==="ROCK" && computerSelection==="Rock"){
             msg="Tie rock vs rock";
         }
@@ -51,12 +53,24 @@ function playRound(choice){
             msg="You win scissors beats paper";
             p++;
         }
- 
+        if(c===5){
+            winner.textContent="Winner is: Computer";
+            p=0;
+            c=0;
+        }
+        else if(p===5){
+            winner.textContent="Winner is: Player";
+            p=0;
+            c=0;
+        }
+        
     return msg;
     
 }
+
 let p=0;
 let c=0;
+
 const rock=document.createElement("button");
 rock.textContent="Rock";
 const paper=document.createElement("button");
@@ -99,6 +113,7 @@ const results = document.querySelector("#results");
     results.innerHTML+=roundResult;
     results.innerHTML+="<br>";
 })
+const winner=document.createElement("div");
 
 rock.style.margin="10px";
 paper.style.margin="10px";
@@ -117,5 +132,5 @@ document.getElementById("bigContainer").style.display="flex";
 document.getElementById("bigContainer").style.flexDirection="column";
 document.getElementById("bigContainer").style.justifyContent="space-between";
 document.getElementById("bigContainer").style.alignItems="center";
-score.append(computer,player);
-console.log(container);
+score.append(computer,player,winner);
+
