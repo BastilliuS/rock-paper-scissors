@@ -12,18 +12,20 @@ function getComputerChoice(){
          return c;
          }
 }
-function playRound(playerSelection,computerSelection){
+function playRound(choice){
      let msg="";
      computerSelection=getComputerChoice();
-     playerSelection=prompt("Let's play!");
+     playerSelection=choice;
     if (playerSelection.toUpperCase()==="ROCK" && computerSelection==="Rock"){
             msg="Tie rock vs rock";
         }
         else if(playerSelection.toUpperCase()==="ROCK" && computerSelection==="Paper"){
             msg="You lose paper beats rock";
+            c++;
         }
         else if(playerSelection.toUpperCase()==="ROCK" && computerSelection==="Scissors"){
             msg="You win rock beats scissors";
+            p++;
         }
     
      if (playerSelection.toUpperCase()==="PAPER" && computerSelection==="Paper"){
@@ -31,52 +33,79 @@ function playRound(playerSelection,computerSelection){
         }
         else if(playerSelection.toUpperCase()==="PAPER" && computerSelection==="Scissors"){
             msg="You lose scissors beats paper";
+            c++;
         }
         else if(playerSelection.toUpperCase()==="PAPER" && computerSelection==="Rock"){
             msg="You win paper beats rock";
+            p++;
         }
     
      if (playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="Scissors"){
-            msg="Tie scis vs scis";
+            msg="Tie scissors vs scissors";
         }
         else if(playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="Rock"){
             msg="You lose rock beats scisssors";
+            c++;
         }
         else if(playerSelection.toUpperCase()==="SCISSORS" && computerSelection==="Paper"){
             msg="You win scissors beats paper";
+            p++;
         }
+ 
     return msg;
-}
-function game(){
-    let player=0;
-    let computer=0;
-    let result="";
-    for (let i=0;i<5; i++){
-       result=playRound(playerSelection,computerSelection);
-        if(result.includes("win")){
-            player++;
-        }
-        else if(result.includes("lose")){
-            computer++;
-        }
-      console.log(result);
-      console.log(player);
-      console.log(computer);
-     
-    }
-    if(player>computer){
-        return "You win!";
-    }
-    else if(player<computer){
-        return "You lose, dumbo!";
-    }
-    else if(player===computer){
-        return "Tie!";
-    }
-}
     
+}
+let p=0;
+let c=0;
+ const rock=document.createElement("button");
+ rock.textContent="Rock";
+ const paper=document.createElement("button");
+ paper.textContent="Paper";
+ const scissors=document.createElement("button");
+ scissors.textContent="Scissors";
+ const container=document.querySelector("#container");
+ container.append(rock,paper,scissors);
+ const results = document.querySelector("#results");
+ rock.addEventListener("click",()=>{
+    roundResult=playRound("rock");
+    results.textContent="";
+    computer.textContent="";
+    computer.textContent="Computer:";
+    player.textContent="Player:";
+    computer.textContent+=c;
+    player.textContent+=p;
+    results.innerHTML+=roundResult;
+    results.innerHTML+="<br>";
+ })
+ paper.addEventListener("click",()=>{
+    roundResult=playRound("paper");
+    results.textContent="";
+    computer.textContent="";
+    computer.style.cssText="margin=100px";
+    computer.textContent="Computer:";
+    player.textContent="Player:";
+    computer.textContent+=c;
+    player.textContent+=p;
+    results.innerHTML+=roundResult;
+    results.innerHTML+="<br>";
+ })
+ scissors.addEventListener("click",()=>{
+    roundResult=playRound("scissors");
+    results.textContent="";
+    computer.textContent="";
+    computer.textContent="Computer:";
+    player.textContent="Player:";
+    computer.textContent+=c;
+    player.textContent+=p;
+    results.innerHTML+=roundResult;
+    results.innerHTML+="<br>";
+ })
+ const score=document.querySelector("#score");
+ const computer=document.createElement("div");
+ computer.style.cssText="margin=100px;";
+ const player=document.createElement("div");
+ const body=document.querySelector("body");
+ body.style.cssText="display: flex; align-items: center; justify-content: space-around; flex-direction: column;"
 
-    
-let playerSelection = 0;
-let computerSelection = getComputerChoice();
-console.log(game());
+ score.append(computer,player);
+ console.log(container);
